@@ -1,0 +1,333 @@
+/* VARIÁVEIS E RESET */
+:root {
+    --primary-color: #4361ee;
+    --secondary-color: #3a0ca3;
+    --success-color: #4cc9f0;
+    --error-color: #f72585;
+    --warning-color: #f8961e;
+    --text-color: #2b2d42;
+    --text-light: #8d99ae;
+    --background-color: #f8f9fa;
+    --white: #ffffff;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 15px;
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+}
+
+/* BARRA DE PROGRESSO */
+.progress-container {
+    padding: 30px 40px 20px;
+    background: var(--white);
+    border-bottom: 1px solid #e9ecef;
+}
+
+.progress-bar {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.progress {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    border-radius: 3px;
+    width: 0%;
+    transition: var(--transition);
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-bottom: 5px;
+}
+
+.step {
+    width: 30px;
+    height: 30px;
+    background: #e9ecef;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--text-light);
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.step.active {
+    background: var(--primary-color);
+    color: var(--white);
+    transform: scale(1.1);
+}
+
+.step-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 5px;
+}
+
+/* FORMULÁRIO */
+.form-step {
+    padding: 30px 40px;
+    display: none;
+}
+
+.form-step.active {
+    display: block;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: var(--white);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.1);
+}
+
+/* GRUPO DE CHECKBOX */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.checkbox {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.checkbox:hover {
+    border-color: var(--primary-color);
+}
+
+.checkbox input {
+    width: auto;
+    margin-right: 8px;
+}
+
+/* MENSAGENS DE ERRO */
+.error {
+    color: var(--error-color);
+    font-size: 0.8rem;
+    margin-top: 5px;
+    display: none;
+}
+
+.input-error {
+    border-color: var(--error-color) !important;
+    background-color: rgba(247, 37, 133, 0.05);
+}
+
+.input-success {
+    border-color: var(--success-color) !important;
+}
+
+/* BOTÕES */
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+button {
+    padding: 12px 30px;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    flex: 1;
+}
+
+.btn-prev {
+    background: #6c757d;
+    color: var(--white);
+}
+
+.btn-next, .btn-submit {
+    background: var(--primary-color);
+    color: var(--white);
+}
+
+button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none !important;
+}
+
+/* RESUMO */
+.resumo {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    border-left: 4px solid var(--primary-color);
+}
+
+.resumo-item {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.resumo-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.resumo-label {
+    font-weight: 600;
+    color: var(--secondary-color);
+}
+
+/* LOADING E MENSAGENS */
+.loading, .success-message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.hidden {
+    display: none !important;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-bottom: 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.success-message {
+    text-align: center;
+    color: var(--secondary-color);
+}
+
+.success-message h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    .container {
+        margin: 10px;
+        border-radius: 10px;
+    }
+    
+    .progress-container,
+    .form-step {
+        padding: 20px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .checkbox-group {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+}

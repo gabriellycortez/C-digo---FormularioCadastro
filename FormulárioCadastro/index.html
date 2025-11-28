@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Interativo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Barra de Progresso -->
+        <div class="progress-container">
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+            </div>
+            <div class="progress-steps">
+                <div class="step active" data-step="1">1</div>
+                <div class="step" data-step="2">2</div>
+                <div class="step" data-step="3">3</div>
+                <div class="step" data-step="4">4</div>
+            </div>
+            <div class="step-labels">
+                <span>Dados Pessoais</span>
+                <span>Endereço</span>
+                <span>Profissional</span>
+                <span>Confirmação</span>
+            </div>
+        </div>
+
+        <form id="cadastroForm">
+            <!-- ETAPA 1: Dados Pessoais -->
+            <div class="form-step active" id="step-1">
+                <h2>Dados Pessoais</h2>
+                
+                <div class="form-group">
+                    <label for="nome">Nome Completo *</label>
+                    <input type="text" id="nome" name="nome" required>
+                    <span class="error" id="nomeError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error" id="emailError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefone">Telefone *</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                    <span class="error" id="telefoneError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="nascimento">Data de Nascimento *</label>
+                    <input type="date" id="nascimento" name="nascimento" required>
+                    <span class="error" id="nascimentoError"></span>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-next" onclick="avancarEtapa(2)">Próximo</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 2: Endereço -->
+            <div class="form-step" id="step-2">
+                <h2>Endereço</h2>
+                
+                <div class="form-group">
+                    <label for="cep">CEP *</label>
+                    <input type="text" id="cep" name="cep" maxlength="9" required>
+                    <span class="error" id="cepError"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="logradouro">Logradouro *</label>
+                        <input type="text" id="logradouro" name="logradouro" required>
+                        <span class="error" id="logradouroError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="numero">Número *</label>
+                        <input type="text" id="numero" name="numero" required>
+                        <span class="error" id="numeroError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bairro">Bairro *</label>
+                    <input type="text" id="bairro" name="bairro" required>
+                    <span class="error" id="bairroError"></span>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cidade">Cidade *</label>
+                        <input type="text" id="cidade" name="cidade" required>
+                        <span class="error" id="cidadeError"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado *</label>
+                        <select id="estado" name="estado" required>
+                            <option value="">Selecione...</option>
+                            <option value="AC">Acre</option>
+                            <option value="AL">Alagoas</option>
+                            <!-- ... outros estados ... -->
+                        </select>
+                        <span class="error" id="estadoError"></span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="complemento">Complemento</label>
+                    <input type="text" id="complemento" name="complemento">
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-prev" onclick="voltarEtapa(1)">Anterior</button>
+                    <button type="button" class="btn-next" onclick="avancarEtapa(3)">Próximo</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 3: Perfil Profissional -->
+            <div class="form-step" id="step-3">
+                <h2>Perfil Profissional</h2>
+                
+                <div class="form-group">
+                    <label for="profissao">Profissão *</label>
+                    <input type="text" id="profissao" name="profissao" required>
+                    <span class="error" id="profissaoError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="empresa">Empresa</label>
+                    <input type="text" id="empresa" name="empresa">
+                </div>
+
+                <div class="form-group">
+                    <label for="interesses">Áreas de Interesse * (Selecione pelo menos uma)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox">
+                            <input type="checkbox" name="interesses" value="tech"> Tecnologia
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="interesses" value="design"> Design
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="interesses" value="marketing"> Marketing
+                        </label>
+                        <label class="checkbox">
+                            <input type="checkbox" name="interesses" value="vendas"> Vendas
+                        </label>
+                    </div>
+                    <span class="error" id="interessesError"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="sobre">Sobre você</label>
+                    <textarea id="sobre" name="sobre" rows="4" placeholder="Conte um pouco sobre você..."></textarea>
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-prev" onclick="voltarEtapa(2)">Anterior</button>
+                    <button type="button" class="btn-next" onclick="avancarEtapa(4)">Próximo</button>
+                </div>
+            </div>
+
+            <!-- ETAPA 4: Confirmação -->
+            <div class="form-step" id="step-4">
+                <h2>Confirmação</h2>
+                
+                <div class="resumo" id="resumo">
+                    <!-- Resumo será preenchido via JavaScript -->
+                </div>
+
+                <div class="form-buttons">
+                    <button type="button" class="btn-prev" onclick="voltarEtapa(3)">Anterior</button>
+                    <button type="button" class="btn-submit" onclick="finalizarCadastro()">Finalizar Cadastro</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Loading e Mensagens -->
+        <div id="loading" class="loading hidden">
+            <div class="spinner"></div>
+            <p>Processando seu cadastro...</p>
+        </div>
+
+        <div id="successMessage" class="success-message hidden">
+            <h2>🎉 Cadastro realizado com sucesso!</h2>
+            <p>Bem-vindo(a) à nossa comunidade!</p>
+            <button onclick="reiniciarFormulario()">Fazer novo cadastro</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
